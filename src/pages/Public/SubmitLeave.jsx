@@ -21,8 +21,8 @@ const SubmitLeave = () => {
         idNumber: '',
         job: '',
         employer: '',
-        city: 'الرياض',
         nationality: 'سعودي',
+        customNationality: '',
         startDate: new Date().toISOString().split('T')[0],
         daysCount: 1,
         diagnosis: '',
@@ -59,10 +59,16 @@ const SubmitLeave = () => {
         setLoading(true);
 
         try {
+            const dataToSubmit = { ...formData };
+            if (dataToSubmit.nationality === 'أخرى') {
+                dataToSubmit.nationality = dataToSubmit.customNationality;
+            }
+            delete dataToSubmit.customNationality;
+
             const response = await fetch(`${API_BASE_URL.replace('/verify', '/api/add-leave')}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(dataToSubmit)
             });
 
             const data = await response.json();
@@ -183,6 +189,26 @@ const SubmitLeave = () => {
                                                         <span className="input-group-text bg-light border-end-0 text-primary"><FontAwesomeIcon icon={faBuilding} /></span>
                                                         <input type="text" name="employer" className="form-control form-control-lg border-start-0 bg-light" placeholder="المدرسة، الجامعة، أو الشركة التي ينتمي إليها المريض" value={formData.employer} onChange={handleChange} />
                                                     </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <label className="form-label fw-bold text-dark d-block mb-2">الجنسية <span className="text-danger">*</span></label>
+                                                    <div className="input-group mb-2">
+                                                        <span className="input-group-text bg-light border-end-0 text-primary"><FontAwesomeIcon icon={faIdCard} /></span>
+                                                        <select name="nationality" className="form-select form-control-lg border-start-0 bg-light" value={formData.nationality} onChange={handleChange}>
+                                                            <option value="سعودي">سعودي</option>
+                                                            <option value="مصري">مصري</option>
+                                                            <option value="سوري">سوري</option>
+                                                            <option value="يمني">يمني</option>
+                                                            <option value="أردني">أردني</option>
+                                                            <option value="أخرى">أخرى</option>
+                                                        </select>
+                                                    </div>
+                                                    {formData.nationality === 'أخرى' && (
+                                                        <div className="input-group mt-2">
+                                                            <span className="input-group-text bg-light border-end-0 text-primary"><FontAwesomeIcon icon={faUser} /></span>
+                                                            <input type="text" name="customNationality" className="form-control form-control-lg border-start-0 bg-light" placeholder="أدخل الجنسية..." value={formData.customNationality} onChange={handleChange} />
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         </motion.div>
