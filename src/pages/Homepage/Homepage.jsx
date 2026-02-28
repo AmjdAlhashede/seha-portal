@@ -6,55 +6,63 @@ const Homepage = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="homepage container mt-5 mb-5" style={{ direction: 'rtl' }}>
-            <div className="text-center mb-5 hero-section">
-                <h1 style={{ color: '#306DB5', fontWeight: '800', fontSize: '2.5rem' }}>منصة الإجازات المرضية</h1>
-                <p style={{ color: '#64748b', fontSize: '1.2rem' }}>مرحباً بك في المنصة الموحدة لإدارة واستعلام الإجازات المرضية.</p>
+        <div className="homepage container-fluid px-0 h-100 overflow-hidden" style={{ direction: 'rtl' }}>
+            {/* Hero Section */}
+            <section className="hero-section text-center py-5 mb-5 px-3" style={{ background: 'linear-gradient(180deg, rgba(48, 109, 181, 0.05) 0%, transparent 100%)' }}>
+                <div className="container py-lg-4">
+                    <h1 className="display-4 mb-3" style={{ color: 'var(--secondary)', letterSpacing: '-1px' }}>منصة الإجازات المرضية الموحدة</h1>
+                    <p className="lead mx-auto" style={{ color: 'var(--text-muted)', maxWidth: '700px', fontSize: '1.25rem' }}>
+                        نثق في صحتك. نوفر لك أسهل الوسائل لتقديم واستعلام الإجازات المرضية المعتمدة بكل شفافية وموثوقية في مكان واحد.
+                    </p>
+                </div>
+            </section>
+
+            {/* Service Selection Cards */}
+            <div className="container pb-5">
+                <div className="row g-4 justify-content-center">
+                    <div className="col-lg-5">
+                        <div className="premium-card p-4 p-lg-5 text-center h-100 pointer-event" onClick={() => navigate('/submit')} style={{ cursor: 'pointer' }}>
+                            <div className="icon-wrapper mb-4 d-inline-flex align-items-center justify-content-center" style={{ width: '90px', height: '90px', background: 'var(--primary-light)', borderRadius: '30px', color: 'var(--primary)', transform: 'rotate(-5deg)' }}>
+                                <i className="fas fa-plus-circle fa-3x" style={{ transform: 'rotate(5deg)' }}></i>
+                            </div>
+                            <h2 className="mb-3">تقديم طلب إجازة</h2>
+                            <p className="text-muted mb-4 px-lg-4">
+                                هل ترغب في تقديم طلب إجازة مرضية جديدة؟ قم بتعبئة بياناتك الطبية لكي يتم معالجتها من قبل الجهات المختصة.
+                            </p>
+                            <Button className="btn-primary w-100 py-3 shadow-lg">إصدار طلب جديد</Button>
+                        </div>
+                    </div>
+
+                    <div className="col-lg-5">
+                        <div className="premium-card p-4 p-lg-5 text-center h-100" onClick={() => navigate('/inquiry')} style={{ cursor: 'pointer' }}>
+                            <div className="icon-wrapper mb-4 d-inline-flex align-items-center justify-content-center" style={{ width: '90px', height: '90px', background: '#f8fafc', borderRadius: '30px', color: 'var(--secondary)', border: '1px solid #e2e8f0' }}>
+                                <i className="fas fa-search-plus fa-3x"></i>
+                            </div>
+                            <h2 className="mb-3">تتبع حالة إجازة</h2>
+                            <p className="text-muted mb-4 px-lg-4">
+                                لديك طلب مسبق؟ يمكنك الآن الاستعلام عن حالة طلبك والتحقق من صحة الإجازة المصدرة باستخدام رمز الخدمة.
+                            </p>
+                            <Button className="btn-outline-dark w-100 py-3 rounded-pill fw-bold border-2" style={{ borderRadius: 'var(--radius-sm)' }}>استعلام الأن</Button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div className="row g-4 justify-content-center">
-                <div className="col-md-5">
-                    <Card className="h-100 border-0 shadow-sm transition-hover" style={{ borderRadius: '25px', overflow: 'hidden' }}>
-                        <div style={{ background: 'linear-gradient(135deg, #306DB5 0%, #7eb7db 100%)', height: '10px' }}></div>
-                        <Card.Body className="p-5 text-center d-flex flex-column align-items-center">
-                            <div style={{ width: '80px', height: '80px', background: '#f0f7ff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '25px', color: '#306DB5' }}>
-                                <i className="fas fa-file-medical fa-3x"></i>
-                            </div>
-                            <Card.Title style={{ fontSize: '1.8rem', fontWeight: '700', marginBottom: '15px' }}>تقديم طلب جديد</Card.Title>
-                            <Card.Text style={{ color: '#64748b', fontSize: '1rem', marginBottom: '30px', flexGrow: 1 }}>
-                                بدأت تشعر بالتعب؟ يمكنك الآن تقديم طلب إجازة مرضية إلكترونياً بكل سهولة من خلال تعبئة النموذج المخصص.
-                            </Card.Text>
-                            <Button
-                                onClick={() => navigate('/submit')}
-                                className="w-100 p-3 fw-bold"
-                                style={{ borderRadius: '15px', backgroundColor: '#306DB5', border: 'none' }}
-                            >
-                                ابدأ التقديم
-                            </Button>
-                        </Card.Body>
-                    </Card>
-                </div>
-
-                <div className="col-md-5">
-                    <Card className="h-100 border-0 shadow-sm transition-hover" style={{ borderRadius: '25px', overflow: 'hidden' }}>
-                        <div style={{ background: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)', height: '10px' }}></div>
-                        <Card.Body className="p-5 text-center d-flex flex-column align-items-center">
-                            <div style={{ width: '80px', height: '80px', background: '#f8fafc', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '25px', color: '#0f172a' }}>
-                                <i className="fas fa-search fa-3x"></i>
-                            </div>
-                            <Card.Title style={{ fontSize: '1.8rem', fontWeight: '700', marginBottom: '15px' }}>استعلام عن حالة طلب</Card.Title>
-                            <Card.Text style={{ color: '#64748b', fontSize: '1rem', marginBottom: '30px', flexGrow: 1 }}>
-                                هل قمت بتقديم طلب بالفعل؟ يمكنك متابعة حالة طلبك ومعرفة ما إذا تمت الموافقة عليه أم لا باستخدام رمز الخدمة.
-                            </Card.Text>
-                            <Button
-                                onClick={() => navigate('/inquiry')}
-                                className="w-100 p-3 fw-bold"
-                                style={{ borderRadius: '15px', backgroundColor: '#0f172a', border: 'none' }}
-                            >
-                                تتبع الطلب
-                            </Button>
-                        </Card.Body>
-                    </Card>
+            {/* Trust Badges or Stats Block (Optional for WOW factor) */}
+            <div className="container py-5 text-center opacity-50">
+                <div className="d-flex flex-wrap justify-content-center gap-5">
+                    <div className="d-flex align-items-center gap-2">
+                        <i className="fas fa-shield-alt text-primary"></i>
+                        <span className="small fw-bold">بيانات مشفرة وآمنة</span>
+                    </div>
+                    <div className="d-flex align-items-center gap-2">
+                        <i className="fas fa-bolt text-primary"></i>
+                        <span className="small fw-bold">معالجة فورية للطلبات</span>
+                    </div>
+                    <div className="d-flex align-items-center gap-2">
+                        <i className="fas fa-check-circle text-primary"></i>
+                        <span className="small fw-bold">اعتماد رسمي معترف به</span>
+                    </div>
                 </div>
             </div>
         </div>

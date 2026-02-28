@@ -1,5 +1,3 @@
-import { getCookie } from '../utils/cookies';
-
 // export const API_BASE_URL = "/api/v2";
 // export const API_ACCOUNT_URL = "/api";
 
@@ -9,10 +7,9 @@ export const API_ACCOUNT_URL = "https://admin.seha.it.com/api";
 
 export const getApiPrefix = () => API_BASE_URL;
 
-export const CallHeadersGet = (token = getCookie("JWTUserToken")) => ({
+export const CallHeadersGet = () => ({
     method: "GET",
     headers: {
-        "Authorization": `Bearer ${token}`,
         "accept-language": "ar",
         "Content-Type": "application/json"
     },
@@ -23,14 +20,10 @@ export const CallHeadersGet = (token = getCookie("JWTUserToken")) => ({
 export const CallGETHeaders = CallHeadersGet; // Alias
 export const CallHeaders = CallHeadersGet;    // Alias for legacy support
 
-export const CallHeadersPOST = (body, contentType = "application/json", token = getCookie("JWTUserToken"), method = "POST") => {
+export const CallHeadersPOST = (body, contentType = "application/json", method = "POST") => {
     const headers = new Headers();
     if (contentType) {
         headers.append("Content-Type", contentType);
-    }
-    if (token) {
-        headers.append("Authorization", `Bearer ${token}`);
-        headers.append("x-token", token); // Keep for compatibility
     }
     headers.append("accept-language", "ar");
 
@@ -72,12 +65,8 @@ export const CallHeadersPOSTNoAuth = (body, contentType = "application/json", ca
 // Alias for compatibility with bundled code pattern
 export const CallHeadersPOST$1 = CallHeadersPOST;
 
-export const CallHeadersFormDataPOST = (body, token = getCookie("JWTUserToken"), method = "POST") => {
+export const CallHeadersFormDataPOST = (body, method = "POST") => {
     const headers = new Headers();
-    if (token) {
-        headers.append("Authorization", `Bearer ${token}`);
-        headers.append("x-token", token); // Keep for compatibility
-    }
     headers.append("accept-language", "ar");
 
     return {
@@ -89,7 +78,7 @@ export const CallHeadersFormDataPOST = (body, token = getCookie("JWTUserToken"),
     };
 };
 
-export const CallHeadersGetNoAuth = (token = "", sessionId = "", captchaToken = "") => {
+export const CallHeadersGetNoAuth = (sessionId = "", captchaToken = "") => {
     const headers = new Headers();
     headers.append("content-type", "application/json");
     if (captchaToken) {
@@ -104,11 +93,11 @@ export const CallHeadersGetNoAuth = (token = "", sessionId = "", captchaToken = 
     };
 };
 
-export const CallHeadersPut = (body, token = getCookie("JWTUserToken")) => CallHeadersPOST(body, "application/json", token, "PUT");
+export const CallHeadersPut = (body) => CallHeadersPOST(body, "application/json", "PUT");
 
-export const CallHeadersDelete = (body, token = getCookie("JWTUserToken")) => CallHeadersPOST(body, "application/json", token, "DELETE");
+export const CallHeadersDelete = (body) => CallHeadersPOST(body, "application/json", "DELETE");
 
-export const CallHeadersDeleteFormData = (body, token = getCookie("JWTUserToken")) => CallHeadersFormDataPOST(body, token, "DELETE");
+export const CallHeadersDeleteFormData = (body) => CallHeadersFormDataPOST(body, "DELETE");
 
 export const enumChallengeCategory = {
     challengeBetweenOrganizations: 5,

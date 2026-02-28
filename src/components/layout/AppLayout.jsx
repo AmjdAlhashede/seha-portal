@@ -17,16 +17,17 @@ const AppLayout = () => {
 
     return (
         <ConfigProvider getPopupContainer={(trigger) => trigger.parentElement}>
-            <div className="App">
+            <div className="App min-vh-100 d-flex flex-column">
+                <div className="app-mesh-bg"></div>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>صحة - بوابة الإجازات المرضية</title>
+                    <title>صحة - بوابة الإجازات المرضية الموحدة</title>
                 </Helmet>
-                <main>
-                    <div className="app-header">
-                        <Header />
-                    </div>
-                    <div className="content-area pt-4 pb-4">
+                <header className="sticky-top">
+                    <Header />
+                </header>
+                <main className="flex-grow-1 fade-in">
+                    <div className="content-area container-fluid h-100">
                         <Outlet />
                     </div>
                 </main>
