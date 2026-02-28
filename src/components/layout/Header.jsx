@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Navbar, Nav, Image, Container } from 'react-bootstrap';
-import { getCookie } from '../../utils/cookies';
 
 import logo from '../../../assets/seha_logo-m9JsokyV.svg';
 
