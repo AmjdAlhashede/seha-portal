@@ -10,7 +10,7 @@ export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src_modular'),
+            '@': path.resolve(__dirname, './src'),
             'sweetalert2-react-content': path.resolve(__dirname, 'node_modules/sweetalert2-react-content'),
         },
         dedupe: ['react', 'react-dom', 'sweetalert2'],
