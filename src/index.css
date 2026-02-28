@@ -1,0 +1,22 @@
+/* Global styles for the modular Seha project */
+:root {
+  --primary-color: #306DB5;
+}
+
+body {
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix service card text alignment on mobile */
+.service-block-wrapper .label {
+  text-align: right !important;
+}
+
+@media (min-width: 992px) {
+  .service-block-wrapper .label {
+    text-align: center !important;
+  }
+}

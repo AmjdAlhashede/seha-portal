@@ -1,0 +1,147 @@
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { Navbar, Nav, Image } from 'react-bootstrap';
+import { getCookie } from '../../utils/cookies';
+import { GetJWTUserToken } from '../../utils/auth';
+
+const user_icon = "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='12.914'%20height='15.067'%20viewBox='0%200%2012.914%2015.067'%3e%3cdefs%3e%3cstyle%3e.a{fill:%23fff;}%3c/style%3e%3c/defs%3e%3cpath%20class='a'%20d='M10.1,6.592a3.637,3.637,0,0,1,.752.319,3.306,3.306,0,0,1,.748.614,3.956,3.956,0,0,1,.668.971,6.094,6.094,0,0,1,.462,1.446,9.776,9.776,0,0,1,.185,1.988,3.17,3.17,0,0,1-.841,2.216,2.647,2.647,0,0,1-2.026.921H2.867A2.647,2.647,0,0,1,.84,14.146,3.168,3.168,0,0,1,0,11.931,9.772,9.772,0,0,1,.185,9.942,6.1,6.1,0,0,1,.647,8.5a3.954,3.954,0,0,1,.668-.971,3.306,3.306,0,0,1,.748-.614,3.637,3.637,0,0,1,.752-.319,4.265,4.265,0,0,1-.324-3.956,4.258,4.258,0,0,1,2.3-2.3,4.259,4.259,0,0,1,3.338,0,4.262,4.262,0,0,1,2.3,2.3A4.267,4.267,0,0,1,10.1,6.592ZM6.457,1.076a3.11,3.11,0,0,0-2.283.946A3.112,3.112,0,0,0,3.228,4.3a3.107,3.107,0,0,0,.946,2.283,3.114,3.114,0,0,0,2.283.946A3.108,3.108,0,0,0,8.74,6.587,3.111,3.111,0,0,0,9.686,4.3,3.111,3.111,0,0,0,8.74,2.022,3.11,3.11,0,0,0,6.457,1.076Zm3.59,12.914a1.623,1.623,0,0,0,1.265-.6,2.141,2.141,0,0,0,.526-1.459,6.43,6.43,0,0,0-.66-3.17,2.205,2.205,0,0,0-1.9-1.219A4.158,4.158,0,0,1,6.457,8.609,4.158,4.158,0,0,1,3.632,7.542a2.206,2.206,0,0,0-1.9,1.219,6.431,6.431,0,0,0-.66,3.17A2.139,2.139,0,0,0,1.6,13.389a1.626,1.626,0,0,0,1.265.6h7.18Z'/%3e%3c/svg%3e";
+import logo from '../../../assets/seha_logo-m9JsokyV.svg';
+
+const Header = () => {
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const [topButtonStyle, setTopButtonStyle] = useState({ display: "none" });
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.pageYOffset >= 1500) {
+                setTopButtonStyle({ display: "block" });
+            } else {
+                setTopButtonStyle({ display: "none" });
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            // Disabled legacy auth check for public site
+            /*
+            try {
+                let token = getCookie("JWTUserToken");
+                if (!token) {
+                    try {
+                        await GetJWTUserToken();
+                        token = getCookie("JWTUserToken");
+                    } catch (err) {
+                        console.error("Error fetching JWT token:", err);
+                        setIsAuthorized(false);
+                        return;
+                    }
+                }
+                setIsAuthorized(!!(token && token.trim() !== ""));
+            } catch (err) {
+                console.error("Error checking authorization:", err);
+                setIsAuthorized(false);
+            }
+            */
+        };
+
+        checkAuth();
+        // Removed interval to stop periodic 404s
+        // const interval = setInterval(checkAuth, 30000); 
+        const handleStorageChange = (e) => {
+            if (e.key === "JWTUserToken") checkAuth();
+        };
+
+        window.addEventListener("storage", handleStorageChange);
+        return () => {
+            // clearInterval(interval);
+            window.removeEventListener("storage", handleStorageChange);
+        };
+    }, []);
+
+    const activeKey = location.pathname === "/" ? "1" :
+        location.pathname === "/services" ? "2" :
+            location.pathname === "/inquiries" ? "3" :
+                location.pathname === "/faq" ? "4" :
+                    location.pathname === "/ContactUs" ? "5" : "1";
+
+    const handleLoginClick = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        try {
+            let token = getCookie("JWTUserToken");
+            if (!token) {
+                try {
+                    await GetJWTUserToken();
+                    token = getCookie("JWTUserToken");
+                } catch (err) {
+                    console.error("Error fetching JWT token:", err);
+                    navigate("/account/login");
+                    setIsLoading(false);
+                    return;
+                }
+            }
+            if (token && token.trim() !== "") {
+                navigate("/Dashboard");
+            } else {
+                navigate("/account/login");
+            }
+        } catch (err) {
+            console.error("Error checking authorization:", err);
+            navigate("/account/login");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const scrollToTop = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    };
+
+    return (
+        <Navbar collapseOnSelect expand="lg" className="header" variant="light">
+            <div className="nav-container">
+                <Navbar.Brand as={Link} to="/" className="d-lg-none sm-logo">
+                    <Image className="logo" src={logo} alt="logo" />
+                </Navbar.Brand>
+
+                <div className="d-lg-none d-xl-none justify-content-end menu">
+                    <Navbar.Toggle className="d-inline-flex menu-img" aria-controls="responsive-navbar-nav" />
+                </div>
+
+                <Navbar.Collapse id="responsive-navbar-nav" className="white justify-content-between">
+                    <Nav className="justify-content-between" activeKey={activeKey}>
+                        <Navbar.Brand as={Link} to="/" className="d-none d-lg-block">
+                            <Image className="logo" src={logo} alt="logo" />
+                        </Navbar.Brand>
+                        <Nav.Link eventKey="1" as={Link} to="/" className="link">الرئيسية</Nav.Link>
+                        <Nav.Link eventKey="2" as={Link} to="/submit" className="link">تقديم إجازة</Nav.Link>
+                        <Nav.Link eventKey="3" as={Link} to="/inquiry" className="link">تتبع الطلب</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </div>
+
+            <button style={topButtonStyle} onClick={scrollToTop} id="top-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14.4" height="18.503" viewBox="0 0 14.4 18.503">
+                    <path
+                        id="arrow-up-c"
+                        d="M8.862,11.37,14.381,6.1a1.7,1.7,0,0,1,2.355,0l5.54,5.272a1.555,1.555,0,0,1,0,2.271,1.738,1.738,0,0,1-2.376,0l-2.649-2.528V22.519a1.684,1.684,0,0,1-3.364,0V11.113l-2.649,2.534a1.738,1.738,0,0,1-2.376,0,1.561,1.561,0,0,1,0-2.276Z"
+                        transform="translate(-8.369 -5.625)"
+                        fill="#306DB5"
+                    />
+                </svg>
+            </button>
+        </Navbar>
+    );
+};
+
+export default Header;

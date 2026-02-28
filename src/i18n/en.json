@@ -1,0 +1,30 @@
+{
+    "error": {
+        "fieldRequired": "هذا الحقل مطلوب"
+    },
+    "label": {
+        "targetedAudience": "الفئة المستهدفة",
+        "arAnnouncementTitle": "عنوان التعميم",
+        "arIntro": "مقدمة (عربي)",
+        "arResourceAttachments": "مرفق المصدر (عربي)",
+        "levels": "مستوى التعميم",
+        "accountSector": "قطاع الحساب ",
+        "region": "المنطقة",
+        "citie": "المدينة",
+        "sendANotificationThroughEmail": "ارسال تنبيه عبر الإيميل"
+    },
+    "general": {
+        "error_fetch": "خطأ في الاستعلام"
+    },
+    "dashboard": {
+        "welcome": "welcome to seha platform",
+        "homepage": "Home page",
+        "home": "Home",
+        "logout_confirm_title": "sure to logout ?",
+        "logout_confirm_yes": "Yes",
+        "logout_confirm_cancel": "Cancel",
+        "logout_confirm_thank": "thank you",
+        "logout_confirm_close": "Close",
+        "copyright": "منصة صحة معتمدة من قبل وزارة الصحة"
+    }
+}

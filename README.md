@@ -25,4 +25,7 @@ python -m http.server 3000
 
 ثم افتح: http://localhost:3000
 "# seha-portal" 
+<<<<<<< HEAD
 "# seha-portal" 
+=======
+>>>>>>> 0dffd0e4ef514bb2e88d5832d3fa18f4a2a96c06
