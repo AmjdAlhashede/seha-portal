@@ -1,5 +1,3 @@
-import { getCookie } from './cookies';
-
 export const parseJwt = (token) => {
     try {
         const base64Url = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
@@ -10,8 +8,4 @@ export const parseJwt = (token) => {
     } catch (e) {
         return null;
     }
-};
-
-export const getCookie = (name) => {
-    return localStorage.getItem(name);
 };
