@@ -13,94 +13,9 @@ const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [topButtonStyle, setTopButtonStyle] = useState({ display: "none" });
-    const [isAuthorized, setIsAuthorized] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.pageYOffset >= 1500) {
-                setTopButtonStyle({ display: "block" });
-            } else {
-                setTopButtonStyle({ display: "none" });
-            }
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    useEffect(() => {
-        const checkAuth = async () => {
-            // Disabled legacy auth check for public site
-            /*
-            try {
-                let token = getCookie("JWTUserToken");
-                if (!token) {
-                    try {
-                        await GetJWTUserToken();
-                        token = getCookie("JWTUserToken");
-                    } catch (err) {
-                        console.error("Error fetching JWT token:", err);
-                        setIsAuthorized(false);
-                        return;
-                    }
-                }
-                setIsAuthorized(!!(token && token.trim() !== ""));
-            } catch (err) {
-                console.error("Error checking authorization:", err);
-                setIsAuthorized(false);
-            }
-            */
-        };
-
-        checkAuth();
-        // Removed interval to stop periodic 404s
-        // const interval = setInterval(checkAuth, 30000); 
-        const handleStorageChange = (e) => {
-            if (e.key === "JWTUserToken") checkAuth();
-        };
-
-        window.addEventListener("storage", handleStorageChange);
-        return () => {
-            // clearInterval(interval);
-            window.removeEventListener("storage", handleStorageChange);
-        };
-    }, []);
-
     const activeKey = location.pathname === "/" ? "1" :
-        location.pathname === "/services" ? "2" :
-            location.pathname === "/inquiries" ? "3" :
-                location.pathname === "/faq" ? "4" :
-                    location.pathname === "/ContactUs" ? "5" : "1";
-
-    const handleLoginClick = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        try {
-            let token = getCookie("JWTUserToken");
-            if (!token) {
-                try {
-                    await GetJWTUserToken();
-                    token = getCookie("JWTUserToken");
-                } catch (err) {
-                    console.error("Error fetching JWT token:", err);
-                    navigate("/account/login");
-                    setIsLoading(false);
-                    return;
-                }
-            }
-            if (token && token.trim() !== "") {
-                navigate("/Dashboard");
-            } else {
-                navigate("/account/login");
-            }
-        } catch (err) {
-            console.error("Error checking authorization:", err);
-            navigate("/account/login");
-        } finally {
-            setIsLoading(false);
-        }
-    };
+        location.pathname === "/submit" ? "2" :
+            location.pathname === "/inquiry" ? "3" : "1";
 
     const scrollToTop = () => {
         document.body.scrollTop = 0;

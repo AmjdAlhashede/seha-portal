@@ -175,7 +175,7 @@ const Slenquiry = () => {
                 </div>
 
                 <div className="col-md-12 text-center">
-                    <Link className="btn btn-primary mb-3" to="/inquiries">
+                    <Link className="btn btn-primary mb-3" to="/">
                         رجوع للاستعلامات
                     </Link>
                 </div>
