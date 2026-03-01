@@ -37,16 +37,25 @@ const Slenquiry = () => {
                 method: "GET",
                 headers: headers,
                 redirect: "follow"
-            }).then(res => res.json()).then(res => {
-                if (res.data && res.data.length > 0 && res.data[0].SickLeaveDate !== "") {
-                    let slDate = new Date(res.data[0].SickLeaveDate);
-                    res.data[0].SickLeaveDate = slDate.toISOString().split("T")[0];
+            }).then(res => {
+                if (!res.ok) {
+                    throw new Error("Response not ok");
                 }
-                setResult(res);
-                setShowForm(false);
-                setLoading(false);
+                return res.json();
+            }).then(res => {
+                if (res.data && res.data.length > 0) {
+                    if (res.data[0].SickLeaveDate !== "") {
+                        let slDate = new Date(res.data[0].SickLeaveDate);
+                        res.data[0].SickLeaveDate = slDate.toISOString().split("T")[0];
+                    }
+                    setResult(res);
+                    setShowForm(false);
+                    setLoading(false);
+                } else {
+                    throw new Error("Empty data result");
+                }
             }).catch(err => {
-                setShowForm(false);
+                setShowForm(true);
                 setLoading(false);
                 setInquiryError(true);
             });
