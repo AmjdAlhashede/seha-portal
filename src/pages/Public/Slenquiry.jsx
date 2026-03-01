@@ -195,6 +195,7 @@ const Slenquiry = () => {
                                         <div className="result-label">تاريخ الإصدار</div>
                                         <div className="result-value">{result.data[0].SickLeaveDate}</div>
                                     </div>
+
                                     <div className="col-md-6 result-item">
                                         <div className="result-label">تاريخ البدء</div>
                                         <div className="result-value">{formatDate(result.data[0].From)}</div>
