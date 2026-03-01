@@ -52,10 +52,11 @@ h4 {
 
 /* Glassmorphism Utility */
 .glass-effect {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
 }
 
 /* Premium Button Overrides */
@@ -95,15 +96,27 @@ h4 {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
-  background-color: var(--bg-app);
+  background-color: #f8fafc;
   background-image:
-    radial-gradient(at 0% 0%, hsla(215, 70%, 45%, 0.05) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, hsla(215, 70%, 45%, 0.03) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, hsla(215, 70%, 45%, 0.05) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, hsla(215, 70%, 45%, 0.03) 0px, transparent 50%);
+    radial-gradient(at 10% 20%, hsla(215, 80%, 65%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 90% 10%, hsla(170, 70%, 55%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 90%, hsla(280, 80%, 75%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 20% 80%, hsla(215, 80%, 60%, 0.15) 0px, transparent 50%);
+  background-size: 150% 150%;
+  animation: bg-pan 25s ease infinite alternate;
+}
+
+@keyframes bg-pan {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
 }
 
 /* Page Transitions */

@@ -3,6 +3,7 @@ import { API_BASE_URL } from '../../api/base';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { motion, AnimatePresence } from 'framer-motion';
 import { validateID, formatDate } from '../../utils/inquiryUtils';
 import "./Inquiry.css";
 
@@ -84,8 +85,15 @@ const Slenquiry = () => {
                         <p className="text-muted lead">أدخل رمز الخدمة ورقم الهوية للتحقق من صحة وصلاحية الإجازة المرضية المصدرة.</p>
                     </div>
 
-                    <div className="premium-card p-4 p-md-5 mb-5 shadow-lg border-0">
-                        <div className="search-form">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="premium-card p-4 p-md-5 mb-5 shadow-lg border-0 glass-effect"
+                        style={{ position: 'relative', overflow: 'hidden' }}
+                    >
+                        <div className="position-absolute bg-primary opacity-5 rounded-circle" style={{ width: '300px', height: '300px', top: '-10%', right: '-10%', filter: 'blur(50px)', zIndex: 0 }}></div>
+                        <div className="search-form position-relative z-index-1">
                             {errors.map((msg, idx) => (
                                 <p key={idx} className="alert alert-danger mb-4 py-2 small">{msg}</p>
                             ))}
@@ -149,11 +157,18 @@ const Slenquiry = () => {
                                 </button>
                             )}
                         </div>
-                    </div>
+                    </motion.div>
 
                     {!showForm && result && result.data && result.data.length > 0 && (
-                        <div className="verified-card shadow-lg mb-5 fade-in border border-primary border-opacity-10">
-                            <div className="verified-badge">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="verified-card shadow-lg mb-5 border border-primary border-opacity-10 bg-white rounded-4 overflow-hidden"
+                            style={{ position: 'relative' }}
+                        >
+                            <div className="position-absolute bg-success opacity-5 rounded-circle" style={{ width: '200px', height: '200px', bottom: '-5%', left: '-5%', filter: 'blur(40px)', zIndex: 0 }}></div>
+                            <div className="verified-badge position-relative z-index-1">
                                 <i className="fas fa-check-circle"></i>
                                 طلب معتمد
                             </div>
@@ -201,7 +216,7 @@ const Slenquiry = () => {
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     )}
 
                     <div className="text-center">

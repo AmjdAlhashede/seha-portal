@@ -10,12 +10,22 @@ const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const activeKey = location.pathname === "/" ? "1" :
         location.pathname === "/submit" ? "2" :
             location.pathname === "/inquiry" ? "3" : "1";
 
     return (
-        <Navbar collapseOnSelect expand="lg" className="header glass-effect py-3 px-lg-5 shadow-sm" variant="light">
+        <Navbar collapseOnSelect expand="lg" className={`header ${scrolled ? 'glass-effect py-2 shadow-sm' : 'bg-transparent py-4'} transition-all`} style={{ transition: 'all 0.3s ease-in-out', zIndex: 1030 }} variant="light">
             <Container fluid>
                 <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
                     <Image className="logo" src={logo} alt="logo" style={{ height: '45px', width: 'auto' }} />
