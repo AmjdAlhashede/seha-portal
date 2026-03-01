@@ -9,9 +9,7 @@ const Homepage = () => {
     return (
         <div className="homepage container-fluid px-0 h-100 overflow-hidden" style={{ direction: 'rtl', position: 'relative' }}>
 
-            {/* Background Decorative Blur */}
-            <div className="position-absolute bg-primary opacity-10 rounded-circle" style={{ width: '600px', height: '600px', top: '-20%', right: '-10%', filter: 'blur(80px)', zIndex: 0 }}></div>
-            <div className="position-absolute bg-info opacity-10 rounded-circle" style={{ width: '400px', height: '400px', bottom: '10%', left: '-5%', filter: 'blur(60px)', zIndex: 0 }}></div>
+            {/* Background Decorative Blur - REMOVED FOR FORMALITY */}
 
             {/* Hero Section */}
             <section className="hero-section d-flex align-items-center justify-content-center text-center py-5 mb-4 position-relative z-index-1" style={{ minHeight: '40vh' }}>
@@ -71,7 +69,7 @@ const Homepage = () => {
                             <p className="text-muted mb-5 px-lg-3 flex-grow-1" style={{ fontSize: '1.1rem' }}>
                                 لديك طلب مسبق أو تود التحقق من وثيقة؟ استعلم الآن عن حالة إجازتك المعتمدة وتحقق من موثوقيتها عبر رمز الخدمة بأمان تام.
                             </p>
-                            <Button className="btn-outline-dark w-100 py-3 rounded-pill fw-bold border-2 fs-5 mt-auto transition-all" style={{ backgroundColor: '#fff', color: 'var(--secondary)' }}>
+                            <Button className="btn-primary w-100 py-3 shadow-lg fs-5 rounded-pill mt-auto transition-all">
                                 <i className="fas fa-search me-2"></i> استعلام مباشر
                             </Button>
                         </div>
