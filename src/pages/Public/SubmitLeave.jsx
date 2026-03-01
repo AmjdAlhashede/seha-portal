@@ -132,9 +132,7 @@ const SubmitLeave = () => {
                         <p className="text-muted fs-5">قم بتعبئة بيانات المريض والإجازة ليتم تسجيلها واعتمادها في النظام الموحد بسهولة وموثوقية.</p>
                     </div>
 
-                    <div className="premium-card p-4 p-md-5 shadow-lg border-0 rounded-4 glass-effect position-relative overflow-hidden fade-in">
-
-                        <div className="position-absolute top-0 start-0 bg-primary opacity-5 rounded-circle" style={{ width: '400px', height: '400px', transform: 'translate(-30%, -30%)', filter: 'blur(60px)' }}></div>
+                    <div className="premium-card p-4 p-md-5 shadow-lg border-0 rounded-4 bg-white position-relative overflow-hidden fade-in">
 
                         <div className="position-relative z-index-1">
                             <Steps

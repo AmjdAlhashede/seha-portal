@@ -45,7 +45,7 @@ const Homepage = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <div className="premium-card p-4 p-lg-5 text-center h-100 d-flex flex-column" onClick={() => navigate('/submit')} style={{ cursor: 'pointer', borderTop: '4px solid var(--primary)' }}>
-                            <div className="icon-wrapper mx-auto mb-4 d-flex align-items-center justify-content-center shadow-sm transition-all" style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, var(--primary-light), #fff)', borderRadius: '24px', color: 'var(--primary)', transform: 'rotate(-5deg)' }}>
+                            <div className="icon-wrapper mx-auto mb-4 d-flex align-items-center justify-content-center shadow-sm transition-all" style={{ width: '90px', height: '90px', background: 'var(--primary-light)', borderRadius: '24px', color: 'var(--primary)', transform: 'rotate(-5deg)' }}>
                                 <i className="fas fa-file-medical fa-3x" style={{ transform: 'rotate(5deg)' }}></i>
                             </div>
                             <h2 className="mb-3 fw-bold">تقديم طلب إجازة</h2>
@@ -64,7 +64,7 @@ const Homepage = () => {
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
                         <div className="premium-card p-4 p-lg-5 text-center h-100 d-flex flex-column bg-white" onClick={() => navigate('/inquiry')} style={{ cursor: 'pointer', borderTop: '4px solid var(--secondary)' }}>
-                            <div className="icon-wrapper mx-auto mb-4 d-flex align-items-center justify-content-center shadow-sm transition-all" style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #f1f5f9, #fff)', borderRadius: '24px', color: 'var(--secondary)', transform: 'rotate(5deg)' }}>
+                            <div className="icon-wrapper mx-auto mb-4 d-flex align-items-center justify-content-center shadow-sm transition-all" style={{ width: '90px', height: '90px', background: '#f1f5f9', borderRadius: '24px', color: 'var(--secondary)', transform: 'rotate(5deg)' }}>
                                 <i className="fas fa-qrcode fa-3x" style={{ transform: 'rotate(-5deg)' }}></i>
                             </div>
                             <h2 className="mb-3 fw-bold">تتبع صحة إجازة</h2>

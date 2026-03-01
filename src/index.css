@@ -91,7 +91,7 @@ h4 {
   box-shadow: var(--shadow-lg);
 }
 
-/* Mesh Gradient Background for App */
+/* Solid Formal Background for App */
 .app-mesh-bg {
   position: fixed;
   top: 0;
@@ -100,23 +100,6 @@ h4 {
   height: 100vh;
   z-index: -1;
   background-color: #f8fafc;
-  background-image:
-    radial-gradient(at 10% 20%, hsla(215, 80%, 65%, 0.15) 0px, transparent 50%),
-    radial-gradient(at 90% 10%, hsla(170, 70%, 55%, 0.15) 0px, transparent 50%),
-    radial-gradient(at 80% 90%, hsla(280, 80%, 75%, 0.15) 0px, transparent 50%),
-    radial-gradient(at 20% 80%, hsla(215, 80%, 60%, 0.15) 0px, transparent 50%);
-  background-size: 150% 150%;
-  animation: bg-pan 25s ease infinite alternate;
-}
-
-@keyframes bg-pan {
-  0% {
-    background-position: 0% 0%;
-  }
-
-  100% {
-    background-position: 100% 100%;
-  }
 }
 
 /* Page Transitions */

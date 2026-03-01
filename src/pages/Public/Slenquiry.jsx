@@ -89,10 +89,9 @@ const Slenquiry = () => {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
-                        className="premium-card p-4 p-md-5 mb-5 shadow-lg border-0 glass-effect"
+                        className="premium-card p-4 p-md-5 mb-5 shadow-lg border-0 bg-white"
                         style={{ position: 'relative', overflow: 'hidden' }}
                     >
-                        <div className="position-absolute bg-primary opacity-5 rounded-circle" style={{ width: '300px', height: '300px', top: '-10%', right: '-10%', filter: 'blur(50px)', zIndex: 0 }}></div>
                         <div className="search-form position-relative z-index-1">
                             {errors.map((msg, idx) => (
                                 <p key={idx} className="alert alert-danger mb-4 py-2 small">{msg}</p>
