@@ -122,9 +122,9 @@ const SubmitLeave = () => {
     ];
 
     return (
-        <div className="inner-page container py-5" style={{ minHeight: '85vh', direction: 'rtl' }}>
-            <div className="row justify-content-center">
-                <div className="col-xl-9 col-lg-10">
+        <div className="inner-page container py-4 py-md-5 d-flex flex-column justify-content-center" style={{ minHeight: '85vh', direction: 'rtl' }}>
+            <div className="row justify-content-center mx-0 w-100">
+                <div className="col-12 col-md-11 col-lg-10 col-xl-9 px-0 px-md-3">
 
                     <div className="text-center mb-5 fade-in">
                         <span className="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-3 fw-bold border border-primary border-opacity-25">الخدمات الإلكترونية الموحدة</span>

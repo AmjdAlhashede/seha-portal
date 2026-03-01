@@ -14,8 +14,8 @@ const Homepage = () => {
             <div className="position-absolute bg-info opacity-10 rounded-circle" style={{ width: '400px', height: '400px', bottom: '10%', left: '-5%', filter: 'blur(60px)', zIndex: 0 }}></div>
 
             {/* Hero Section */}
-            <section className="hero-section text-center py-5 mb-5 px-3 position-relative z-index-1">
-                <div className="container py-lg-5 mt-4">
+            <section className="hero-section d-flex align-items-center justify-content-center text-center py-5 mb-4 position-relative z-index-1" style={{ minHeight: '40vh' }}>
+                <div className="container py-4 mt-2">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ const Homepage = () => {
             {/* Service Selection Cards */}
             <div className="container pb-5 position-relative z-index-1">
                 <div className="row g-4 justify-content-center">
-                    <motion.div className="col-lg-5"
+                    <motion.div className="col-12 col-md-10 col-lg-5 col-xl-5"
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
@@ -58,7 +58,7 @@ const Homepage = () => {
                         </div>
                     </motion.div>
 
-                    <motion.div className="col-lg-5"
+                    <motion.div className="col-12 col-md-10 col-lg-5 col-xl-5"
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.4 }}

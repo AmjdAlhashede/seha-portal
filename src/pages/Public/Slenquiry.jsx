@@ -77,9 +77,9 @@ const Slenquiry = () => {
     };
 
     return (
-        <div className="inner-page container py-5 fade-in" style={{ direction: 'rtl' }}>
-            <div className="row justify-content-center">
-                <div className="col-lg-8 col-xl-6">
+        <div className="inner-page container py-5 fade-in d-flex flex-column justify-content-center" style={{ minHeight: '80vh', direction: 'rtl' }}>
+            <div className="row justify-content-center align-items-center w-100 mx-0">
+                <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-6 px-0 px-md-3">
                     <div className="text-center mb-5">
                         <h1 className="display-5 mb-3">الاستعلام عن إجازة مرضية</h1>
                         <p className="text-muted lead">أدخل رمز الخدمة ورقم الهوية للتحقق من صحة وصلاحية الإجازة المرضية المصدرة.</p>
