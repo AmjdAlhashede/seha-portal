@@ -175,7 +175,6 @@ const Slenquiry = () => {
                             className="verified-card shadow-lg mb-5 border border-primary border-opacity-10 bg-white rounded-4 overflow-hidden"
                             style={{ position: 'relative' }}
                         >
-                            <div className="position-absolute bg-success opacity-5 rounded-circle" style={{ width: '200px', height: '200px', bottom: '-5%', left: '-5%', filter: 'blur(40px)', zIndex: 0 }}></div>
                             <div className="verified-badge position-relative z-index-1">
                                 <i className="fas fa-check-circle"></i>
                                 طلب معتمد
