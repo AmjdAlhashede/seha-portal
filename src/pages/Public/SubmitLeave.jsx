@@ -25,9 +25,7 @@ const SubmitLeave = () => {
         customNationality: '',
         startDate: new Date().toISOString().split('T')[0],
         daysCount: 1,
-        diagnosis: '',
         doctorName: '',
-        hospitalName: '',
         notes: ''
     });
 
@@ -43,7 +41,7 @@ const SubmitLeave = () => {
                 return;
             }
         } else if (currentStep === 1) {
-            if (!formData.startDate || !formData.daysCount || !formData.hospitalName || !formData.doctorName) {
+            if (!formData.startDate || !formData.daysCount || !formData.doctorName) {
                 message.warning('الرجاء استكمال تفاصيل الإجازة الطبية.');
                 return;
             }
@@ -175,7 +173,7 @@ const SubmitLeave = () => {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <label className="form-label fw-bold text-dark d-block mb-2">المسمى الوظيفي <span className="text-danger">*</span></label>
+                                                    <label className="form-label fw-bold text-dark d-block mb-2">الوظيفة <span className="text-danger">*</span></label>
                                                     <div className="input-group">
                                                         <span className="input-group-text bg-light border-end-0 text-primary"><FontAwesomeIcon icon={faBriefcase} /></span>
                                                         <input type="text" name="job" className="form-control form-control-lg border-start-0 bg-light" placeholder="طالب، مهندس، معلم..." value={formData.job} onChange={handleChange} />
@@ -235,27 +233,14 @@ const SubmitLeave = () => {
                                                         <input type="number" name="daysCount" className="form-control form-control-lg border-start-0 bg-light" min="1" placeholder="مثال: 3" value={formData.daysCount} onChange={handleChange} />
                                                     </div>
                                                 </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label fw-bold text-dark d-block mb-2">اسم المنشأة الصحية <span className="text-danger">*</span></label>
-                                                    <div className="input-group">
-                                                        <span className="input-group-text bg-light border-end-0 text-primary"><FontAwesomeIcon icon={faHospital} /></span>
-                                                        <input type="text" name="hospitalName" className="form-control form-control-lg border-start-0 bg-light" placeholder="المستشفى أو المركز الطبي المشرف" value={formData.hospitalName} onChange={handleChange} />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
+                                                <div className="col-md-12">
                                                     <label className="form-label fw-bold text-dark d-block mb-2">اسم الطبيب المعالج <span className="text-danger">*</span></label>
                                                     <div className="input-group">
                                                         <span className="input-group-text bg-light border-end-0 text-primary"><FontAwesomeIcon icon={faStethoscope} /></span>
                                                         <input type="text" name="doctorName" className="form-control form-control-lg border-start-0 bg-light" placeholder="د. محمد عبدالأمير..." value={formData.doctorName} onChange={handleChange} />
                                                     </div>
                                                 </div>
-                                                <div className="col-12">
-                                                    <label className="form-label fw-bold text-dark d-block mb-2">التشخيص الطبي <span className="text-muted fw-normal">(اختياري)</span></label>
-                                                    <div className="input-group">
-                                                        <span className="input-group-text bg-light border-end-0 text-primary"><FontAwesomeIcon icon={faNotesMedical} /></span>
-                                                        <input type="text" name="diagnosis" className="form-control form-control-lg border-start-0 bg-light" placeholder="وصف موجز لحالة المريض" value={formData.diagnosis} onChange={handleChange} />
-                                                    </div>
-                                                </div>
+
                                             </div>
                                         </motion.div>
                                     )}
@@ -319,17 +304,7 @@ const SubmitLeave = () => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="col-md-6">
-                                                        <div className="d-flex align-items-start gap-3">
-                                                            <div className="bg-light p-3 rounded-circle text-primary">
-                                                                <FontAwesomeIcon icon={faHospital} className="fs-5" />
-                                                            </div>
-                                                            <div>
-                                                                <span className="text-muted d-block small mb-1">المنشأة الصحية</span>
-                                                                <span className="fw-bold fs-6">{formData.hospitalName || '-'}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div className="col-md-6">
                                                         <div className="d-flex align-items-start gap-3">
                                                             <div className="bg-light p-3 rounded-circle text-primary">

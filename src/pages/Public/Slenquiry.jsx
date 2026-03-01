@@ -211,10 +211,6 @@ const Slenquiry = () => {
                                         <div className="result-label">الطبيب المعالج</div>
                                         <div className="result-value">{result.data[0]["Doctor NAME"] || "د. مجهول"}</div>
                                     </div>
-                                    <div className="col-12 result-item">
-                                        <div className="result-label">المنشأة الصحية</div>
-                                        <div className="result-value">{result.data[0].HospitalName || "مركز صحي معتمد"}</div>
-                                    </div>
                                 </div>
 
                                 <div className="mt-5 pt-4 text-center">
