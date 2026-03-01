@@ -214,9 +214,61 @@ const Slenquiry = () => {
                                 </div>
 
                                 <div className="mt-5 pt-4 text-center">
-                                    <button className="btn btn-outline-primary px-5 py-2 fw-bold" onClick={() => window.print()}>
-                                        <i className="fas fa-print me-2"></i>
-                                        طباعة التقارير
+                                    <button
+                                        className="btn btn-outline-primary px-5 py-2 fw-bold"
+                                        onClick={async (e) => {
+                                            const btn = e.currentTarget;
+                                            const origText = btn.innerHTML;
+                                            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> جاري التجهيز...';
+                                            btn.disabled = true;
+
+                                            try {
+                                                const element = document.querySelector('.result-card');
+                                                if (!element) return;
+
+                                                const originalBoxShadow = element.style.boxShadow;
+                                                element.style.boxShadow = 'none';
+
+                                                const opt = {
+                                                    margin: 0.5,
+                                                    filename: `SickLeave_${result.data[0].PatientName}.pdf`,
+                                                    image: { type: 'jpeg', quality: 0.98 },
+                                                    html2canvas: { scale: 2, useCORS: true },
+                                                    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+                                                };
+
+                                                const pdfBlob = await window.html2pdf().set(opt).from(element).output('blob');
+                                                element.style.boxShadow = originalBoxShadow;
+
+                                                const pdfFile = new File([pdfBlob], opt.filename, { type: 'application/pdf' });
+
+                                                if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+                                                    await navigator.share({
+                                                        files: [pdfFile],
+                                                        title: 'تقرير إجازة مرضية - صحة',
+                                                        text: 'مرفق تقرير نتيجة الاستعلام.'
+                                                    });
+                                                } else {
+                                                    const blobUrl = URL.createObjectURL(pdfBlob);
+                                                    const a = document.createElement('a');
+                                                    a.href = blobUrl;
+                                                    a.download = opt.filename;
+                                                    document.body.appendChild(a);
+                                                    a.click();
+                                                    document.body.removeChild(a);
+                                                    URL.revokeObjectURL(blobUrl);
+                                                }
+                                            } catch (err) {
+                                                console.error("Error generating PDF", err);
+                                                alert("حدث خطأ أثناء تقرير الملف");
+                                            } finally {
+                                                btn.innerHTML = origText;
+                                                btn.disabled = false;
+                                            }
+                                        }}
+                                    >
+                                        <i className="fas fa-share-alt me-2"></i>
+                                        مشاركة التقرير (PDF)
                                     </button>
                                 </div>
                             </div>
